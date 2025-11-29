@@ -53,29 +53,34 @@ function ProductsPage() {
     })
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 py-12 flex items-start justify-center">
+      <div className="w-full max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Products
+        <div className="text-center mb-12 animate-fadeInUp">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-2xl">
+            Our Products
           </h1>
-          <p className="text-gray-600">Browse our collection of products</p>
+          <p className="text-xl text-white/90 font-medium drop-shadow-lg">Discover amazing deals on quality items</p>
         </div>
 
         {/* Search, Filter, and Sort Section */}
         {!loading && !error && (
-          <div className="mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="mb-10 bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/50 p-8 animate-slideIn">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
               {/* Search Bar */}
               <div className="md:col-span-2">
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+                <div className="relative">
+                  <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Search products..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-14 pr-6 py-4 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-200 transition-all text-gray-800 font-medium text-lg placeholder-purple-400"
+                  />
+                </div>
               </div>
 
               {/* Category Filter */}
@@ -83,7 +88,7 @@ function ProductsPage() {
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-6 py-4 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-200 transition-all appearance-none bg-white cursor-pointer text-gray-800 font-semibold text-lg"
                 >
                   <option value="all">All Categories</option>
                   {categories.map((category) => (
@@ -97,11 +102,11 @@ function ProductsPage() {
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-4">
-              <label className="text-sm font-medium text-gray-700">Sort by:</label>
+              <label className="text-lg font-bold text-gray-800">Sort by:</label>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="px-6 py-3 bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl focus:outline-none focus:border-purple-500 focus:ring-4 focus:ring-purple-200 transition-all appearance-none bg-white cursor-pointer text-gray-800 font-semibold"
               >
                 <option value="default">Default</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -114,10 +119,10 @@ function ProductsPage() {
 
         {/* Results Count */}
         {!loading && !error && (
-          <div className="mb-4">
-            <p className="text-sm text-gray-600">
-              Showing {filteredAndSortedProducts.length} of {products.length} products
-            </p>
+          <div className="mb-8 text-center">
+            <span className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-bold text-lg shadow-lg">
+              {filteredAndSortedProducts.length} Products Found
+            </span>
           </div>
         )}
 
@@ -131,15 +136,15 @@ function ProductsPage() {
 
         {/* Empty State - No Results */}
         {!loading && !error && filteredAndSortedProducts.length === 0 && products.length > 0 && (
-          <div className="text-center py-12">
-            <p className="text-xl text-gray-600 mb-4">No products found</p>
+          <div className="text-center py-20 bg-white/20 backdrop-blur-sm rounded-3xl border border-white/30">
+            <p className="text-2xl text-white font-bold mb-6 drop-shadow-lg">No products found</p>
             <button
               onClick={() => {
                 setSearchTerm('')
                 setSelectedCategory('all')
                 setSortBy('default')
               }}
-              className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              className="px-8 py-4 bg-white text-purple-600 rounded-2xl font-bold hover:bg-yellow-300 hover:text-purple-700 transition-all shadow-xl transform hover:scale-105"
             >
               Clear Filters
             </button>
@@ -148,8 +153,8 @@ function ProductsPage() {
 
         {/* Empty State - No Products at All */}
         {!loading && !error && products.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-xl text-gray-600">No products available</p>
+          <div className="text-center py-20 bg-white/20 backdrop-blur-sm rounded-3xl border border-white/30">
+            <p className="text-2xl text-white font-bold drop-shadow-lg">No products available</p>
           </div>
         )}
 
