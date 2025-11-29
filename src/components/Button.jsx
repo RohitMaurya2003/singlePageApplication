@@ -6,18 +6,18 @@ function Button({
   className = '',
   ...props 
 }) {
-  const baseStyles = 'font-bold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg'
+  const baseStyles = 'font-medium rounded-md transition-colors'
   
   const variants = {
-    primary: 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-indigo-500/50 hover:shadow-2xl',
-    secondary: 'bg-white text-gray-800 hover:bg-gray-50 border-2 border-gray-200',
-    outline: 'border-2 border-indigo-600 text-indigo-600 hover:bg-gradient-to-r hover:from-indigo-600 hover:to-purple-600 hover:text-white hover:border-transparent',
+    primary: 'bg-blue-600 text-white hover:bg-blue-700',
+    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+    outline: 'border border-blue-600 text-blue-600 hover:bg-blue-50',
   }
   
   const sizes = {
-    sm: 'px-5 py-2 text-sm',
-    md: 'px-7 py-3 text-base',
-    lg: 'px-10 py-4 text-lg',
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-6 py-3 text-lg',
   }
   
   return (
